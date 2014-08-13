@@ -1,9 +1,7 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      protect_from_forgery except: :create
       before_filter :authenticate
-      respond_to :json
 
       def index
         render json: User.all, status: :ok
