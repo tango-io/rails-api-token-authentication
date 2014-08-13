@@ -104,6 +104,6 @@ curl -d "user[name]=john&user[password]=mysecurepassword&user[password_confirmat
 
 ### Authors
 
-- Marco Gallardo
-- Cesar Gomez
-- Christian Rojas
+- [Marco Gallardo](https://github.com/marco-gallardo)
+- [Cesar Gomez](https://github.com/cesargomez89)
+- [Christian Rojas](https://github.com/christianrojas)
