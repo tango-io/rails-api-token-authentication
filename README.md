@@ -3,10 +3,10 @@ We can use a token identifier for authenticate HTTP requests in our Back-end API
 
 ##### Benefits:
 
-+ A user can have many tokens for use in different API clients. 
++ A user can have many tokens for use in different API clients.
 
 + Better security, since vulnerability is limited to API access
-and not the user’s account. 
+and not the user’s account.
 
 + We can add expire time or the option of regenerate tokens without alter the user’s account.
 
@@ -16,9 +16,9 @@ and not the user’s account.
 ##### HTTP Headers
 Token must be provided on HTTP requests using the Authorization header.
 
-	GET /episodes HTTP/1.1
-	Host: localhost:3000
-	Authorization: Token token=16d7d6089b8fe0c5e19bfe10bb156832
+    GET /episodes HTTP/1.1
+    Host: localhost:3000
+    Authorization: Token token=16d7d6089b8fe0c5e19bfe10bb156832
 
 
 You can check a document for specifying HTTP Token Access Authentication. For more info, visit [here](http://tools.ietf.org/html/dra!-hammer-http-token-auth-01)
@@ -28,7 +28,7 @@ You can check a document for specifying HTTP Token Access Authentication. For mo
 #### ApplicationController
 For APIs, you may want to use **:null_session** instead of **:exception**
 
-	protect_from_forgery with: :null_session
+    protect_from_forgery with: :null_session
 
 #### UserController
 This is how the mentioned block example works for UsersController:
@@ -62,7 +62,7 @@ Generating the token is pretty simple. One of the options you could go for is cr
 
 #### Encrypting Credentials
 
-Another important part in authentication that you might want to take care is the credentials you are using to authenticate the client. We like using [bcrypt](https://github.com/codahale/bcrypt-ruby) gem which of Rails 4.x it's included in the gemfile as a comment. This gem helps you to encrypt credentials so user's password is not saved in plain text. 
+Another important part in authentication that you might want to take care is the credentials you are using to authenticate the client. We like using [bcrypt](https://github.com/codahale/bcrypt-ruby) gem which of Rails 4.x it's included in the gemfile as a comment. This gem helps you to encrypt credentials so user's password is not saved in plain text.
 
 #### Routes
 Basically we should start our API with the V1 version that way we added a namespace for api and v1, this will generate this routes: **http://localhost:3000/api/v1/users** and by default will generate a json format request
@@ -77,7 +77,7 @@ Basically we should start our API with the V1 version that way we added a namesp
 ## Bonus (How to use curl commands)
 
 
-If you want to test API requests using just the terminal you could use curl. 
+If you want to test API requests using just the terminal you could use curl.
 
 **GET example:**
 
@@ -96,11 +96,14 @@ curl -H "Authorization: Token token=my_first_user_token" http://localhost:3000/a
 curl -d "user[name]=john&user[password]=mysecurepassword&user[password_confirmation]=mysecurepassword&user[email]=john@doe.com" -X POST localhost:3000/api/v1/users
 ```
 
-### Notes: 
+### Notes:
 
 1. Since this API is already requiring a token, you might want to create your first user via rails console. This user's token will be used in the *GET example using token* above example.
 
-2. In *POST example* example we are assuming that the model has *name*, *password_digest*, *token*, and *email* fields. The *password_digest* field was added according to [bcrypt] gem's usage.
+2. In *POST example* example we are assuming that the model has *name*, *password_digest*, *token*, and *email* fields. The *password_digest* field was added according to [bcrypt](https://github.com/codahale/bcrypt-ruby) gem's usage.
+
+### Source Code
+You can find the code for this API implementation [here](https://github.com/tangosource/rails-api-token-authentication)
 
 ### Authors
 
